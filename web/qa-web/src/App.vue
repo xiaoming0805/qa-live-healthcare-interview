@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { RouterView } from 'vue-router';
+import { message } from 'ant-design-vue';
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
+import { store } from './store';
+
+// 应用启动即拉取医生数据，保证各页面拿到的是同一份后端数据
+onMounted(async () => {
+  await store.loadDoctors();
+  if (store.state.doctorsError) {
+    message.error(`医生数据加载失败：${store.state.doctorsError}`);
+  }
+});
 </script>
 
 <template>

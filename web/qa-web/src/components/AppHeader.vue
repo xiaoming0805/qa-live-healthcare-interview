@@ -23,10 +23,18 @@
           关于
         </a-menu-item>
       </a-menu>
-      <a-button type="primary" class="login-btn" @click="navigateTo('/doctor/login')">
-        <UserOutlined />
-        医生登录
-      </a-button>
+      <div class="header-actions">
+        <a-button type="primary" class="login-btn" @click="navigateTo('/doctor/login')">
+          <UserOutlined />
+          医生登录
+        </a-button>
+        <a-select
+          v-model:value="currentLocale"
+          :options="localeOptions"
+          class="locale-switcher"
+          @change="handleLocaleChange"
+        />
+      </div>
     </div>
   </a-layout-header>
 </template>
@@ -35,10 +43,19 @@
 import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { HomeOutlined, MessageOutlined, TeamOutlined, InfoCircleOutlined, UserOutlined } from '@ant-design/icons-vue';
+import { SUPPORTED_LOCALES, getLocale, setLocale, type LocaleCode } from '../locales';
 
 const router = useRouter();
 const route = useRoute();
 const selectedKeys = ref<string[]>(['home']);
+
+// 语言切换：按需求1的范围，仅首页文案随之切换
+const localeOptions = SUPPORTED_LOCALES;
+const currentLocale = ref<LocaleCode>(getLocale());
+
+const handleLocaleChange = (value: LocaleCode) => {
+  setLocale(value);
+};
 
 watch(() => route.path, (newPath) => {
   if (newPath === '/') {
@@ -116,5 +133,16 @@ const navigateTo = (path: string) => {
 .login-btn:hover {
   background: #73d13d;
   border-color: #73d13d;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: normal;
+}
+
+.locale-switcher {
+  width: 110px;
 }
 </style>

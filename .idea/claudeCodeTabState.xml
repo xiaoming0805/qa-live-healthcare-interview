@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ClaudeCodeTabState">
+    <option name="tabSessions">
+      <map>
+        <entry key="0">
+          <value>
+            <TabSessionState>
+              <option name="projectPath" value="F:\code\2026\AI\qa-live-healthcare-interview" />
+              <option name="provider" value="claude" />
+              <option name="sessionId" value="14a781c7-af31-4dbc-961e-1851cf058beb" />
+              <option name="cwd" value="F:\code\2026\AI\qa-live-healthcare-interview" />
+              <option name="model" value="claude-sonnet-5[1m]" />
+              <option name="permissionMode" value="default" />
+            </TabSessionState>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

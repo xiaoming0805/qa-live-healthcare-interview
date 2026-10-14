@@ -6,7 +6,12 @@
     </div>
 
     <div class="doctors-container">
-      <div class="doctors-grid">
+      <a-spin :spinning="store.state.doctorsLoading">
+        <a-empty
+          v-if="!store.state.doctorsLoading && allDoctors.length === 0"
+          description="暂无医生数据"
+        />
+        <div v-else class="doctors-grid">
         <a-card
           v-for="doctor in allDoctors"
           :key="doctor.id"
@@ -42,7 +47,8 @@
             </a-button>
           </div>
         </a-card>
-      </div>
+        </div>
+      </a-spin>
     </div>
   </div>
 </template>
